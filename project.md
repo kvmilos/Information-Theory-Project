@@ -1,4 +1,4 @@
-# Information Theory Project -- entroopy in recipes
+# Information Theory Project -- entropy in recipes
 
 ## import libraries
 
