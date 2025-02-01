@@ -501,7 +501,7 @@ plt.show()
 
 
     
-![png](project_files/project_16_1.png)
+![png](plots/regression_analysis_grid.png)
     
 
 
@@ -563,7 +563,7 @@ for col in groups:
 
 
     
-![png](project_files/project_18_0.png)
+![png](./plots/zipf_law_cuisine.png)
     
 
 
@@ -593,7 +593,7 @@ for col in groups:
 
 
     
-![png](project_files/project_18_4.png)
+![png](./plots/zipf_law_diet_tags.png)
     
 
 
@@ -641,7 +641,7 @@ for col in groups:
 
 
     
-![png](project_files/project_20_1.png)
+![png](./plots/shannon_entropy_by_cuisine.png)
     
 
 
@@ -665,13 +665,13 @@ for col in groups:
 
 
     
-![png](project_files/project_20_3.png)
+![png](./plots/conditional_entropy_by_cuisine.png)
     
 
 
 
     
-![png](project_files/project_20_4.png)
+![png](./plots/ngram_entropy_rates_by_cuisine.png)
     
 
 
@@ -686,7 +686,7 @@ for col in groups:
 
 
     
-![png](project_files/project_20_6.png)
+![png](./plots/shannon_entropy_by_diet_tags.png)
     
 
 
@@ -701,13 +701,13 @@ for col in groups:
 
 
     
-![png](project_files/project_20_8.png)
+![png](./plots/conditional_entropy_by_diet_tags.png)
     
 
 
 
     
-![png](project_files/project_20_9.png)
+![png](./plots/ngram_entropy_rates_by_diet_tags.png)
     
 
 
