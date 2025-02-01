@@ -12,7 +12,7 @@ University of Warsaw
 
 ## 1. Introduction
 
-I was curious about whether recipe instructions vary in complexity across different cuisines and how aspects like the number of ingredients, the total word count of the instructions, and the number of procedural steps relate to that complexity. To explore this, I decided to apply several information-theoretic measures (such as Shannon entropy, conditional entropy, and n-gram entropy rates) to a large dataset of recipes from Food.com (available on [Kaggle](https://www.kaggle.com/irkaal/foodcom-recipes-and-user-interactions)). I also wanted to see if the distribution of words in the recipes follows Zipf’s Law. In short, I set out to test these ideas in a data-driven way.
+I was curious about whether recipe instructions vary in complexity across different cuisines and how aspects like the number of ingredients, the total word count of the instructions, and the number of procedural steps relate to that complexity. To explore this, I decided to apply several information-theoretic measures (such as Shannon entropy, conditional entropy, and n-gram entropy rates) to a large dataset of recipes from Food.com (available on [Kaggle](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions)). I also wanted to see if the distribution of words in the recipes follows Zipf’s Law. In short, I set out to test these ideas in a data-driven way.
 
 ---
 
@@ -20,7 +20,7 @@ I was curious about whether recipe instructions vary in complexity across differ
 
 ### 2.1 Dataset and Preprocessing
 
-I used the file `RAW_recipes.csv` from the Food.com Recipes and Interactions dataset (found on Keggle), which contains over 231,000 recipes along with metadata such as recipe name, tags, preparation time, number of ingredients, steps, and more.
+I used the file `RAW_recipes.csv` from the Food.com Recipes and Interactions dataset (found on Kaggle), which contains over 231,000 recipes along with metadata such as recipe name, tags, preparation time, number of ingredients, steps, and more.
 
 **Preprocessing steps included:**
 
@@ -49,33 +49,33 @@ Rather than using arbitrary discretizations, I grouped the recipes based on natu
 
 For each recipe, I computed the Shannon entropy (using unigrams) to measure vocabulary diversity:
 
-\[
+$$
 H[P] = - \sum_{i} p_i \log_2 p_i
-\]
+$$
 
 #### 2.3.2 Conditional Entropy (Bigrams)
 
 I computed the conditional entropy based on bigrams to capture sequential dependencies in the instructions:
 
-\[
+$$
 H(Y|X) = -\sum_{x,y} p(x,y) \log_2 \left(\frac{p(x,y)}{p(x)}\right)
-\]
+$$
 
 #### 2.3.3 N-gram Entropy Rates
 
-I computed n-gram entropy rates for \(n = 3, 4,\) and \(5\) by dividing the raw n-gram entropy by \(n\), which standardizes the values across different n-gram sizes. For example, for trigrams:
+I computed n-gram entropy rates for $n = 3, 4,$ and $5$ by dividing the raw n-gram entropy by $n$, which standardizes the values across different n-gram sizes. For example, for trigrams:
 
-\[
+$$
 \text{Trigram Entropy Rate} = \frac{H(\text{trigrams})}{3}
-\]
+$$
 
 #### 2.3.4 Mutual Information Analysis
 
 I computed the mutual information between the natural groupings (cuisine vs. diet tags) to assess their statistical independence:
 
-\[
+$$
 I(X;Y) = \sum_{x,y} p(x,y) \log_2 \frac{p(x,y)}{p(x)p(y)}
-\]
+$$
 
 Low mutual information values would indicate that these categories are largely independent.
 
@@ -83,9 +83,9 @@ Low mutual information values would indicate that these categories are largely i
 
 To explore how instruction complexity (measured by Shannon entropy) relates to other features, I performed regression analyses using three predictors:
 
-- **Number of Ingredients (\(n\_ingredients\))**
-- **Total Number of Words in Instructions (\(recipe\_length\))**
-- **Number of Steps (\(n\_steps\_count\))**
+- **Number of Ingredients ($n\_ingredients$)**
+- **Total Number of Words in Instructions ($recipe\_length$)**
+- **Number of Steps ($n\_steps\_count$)**
 
 For each predictor, I performed both:
 
@@ -96,7 +96,7 @@ I then plotted the results in a grid (3 rows × 2 columns), where the left colum
 
 #### 2.3.6 Zipf’s Law Analysis
 
-I investigated Zipf’s Law by plotting the log–log relationship between word rank and frequency. The fitted power-law exponent (\(\alpha\)) and \(R^2\) were computed for each natural group. For example, for the *Cuisine* grouping, the fitted values were computed separately for each cuisine.
+I investigated Zipf’s Law by plotting the log–log relationship between word rank and frequency. The fitted power-law exponent ($\alpha$) and $R^2$ were computed for each natural group. For example, for the *Cuisine* grouping, the fitted values were computed separately for each cuisine.
 
 ### 2.4 [References for Information Theory]
 
@@ -183,12 +183,12 @@ The printed regression outputs are as follows:
 
 | Predictor       | Regression Type   | Coefficient | Intercept | R²     |
 |-----------------|-------------------|-------------|-----------|--------|
-| n_ingredients   | Linear            | 0.0780      | 4.7457    | 0.1712 |
-| n_ingredients   | Logarithmic       | 0.6750      | 4.0254    | 0.1777 |
-| recipe_length   | Linear            | 0.0074      | 4.6930    | 0.6096 |
-| recipe_length   | Logarithmic       | 0.9420      | 1.3135    | 0.9207 |
-| n_steps_count   | Linear            | 0.0887      | 4.5854    | 0.5707 |
-| n_steps_count   | Logarithmic       | 0.9897      | 3.3719    | 0.7625 |
+| n\_ingredients  | Linear            | 0.0780      | 4.7457    | 0.1712 |
+| n\_ingredients  | Logarithmic       | 0.6750      | 4.0254    | 0.1777 |
+| recipe\_length  | Linear            | 0.0074      | 4.6930    | 0.6096 |
+| recipe\_length  | Logarithmic       | 0.9420      | 1.3135    | 0.9207 |
+| n\_steps\_count | Linear            | 0.0887      | 4.5854    | 0.5707 |
+| n\_steps\_count | Logarithmic       | 0.9897      | 3.3719    | 0.7625 |
 
 ### 3.4 Mutual Information
 
@@ -260,7 +260,7 @@ Overall, these results demonstrate that information-theoretic measures can offer
 
 - Shannon, C. E. (1948). A Mathematical Theory of Communication. *Bell System Technical Journal*, 27(3), 379–423.
 - Weaver, W. (1953). Recent Contributions to the Mathematical Theory of Communication. In *ETC: A Review of General Semantics*, 10(4), 261–281.
-- [Food.com Recipes and Interactions Dataset](https://www.kaggle.com/irkaal/foodcom-recipes-and-user-interactions)
+- [Food.com Recipes and Interactions Dataset](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions)
 
 ---
 
