@@ -11,3 +11,4 @@ Apply information-theoretic measures (unigram/bigram entropy, multi-gram entropy
 - [Jupyter Notebook](./project.ipynb)  
 - [Markdown Version of Notebook](./project.md)  
 - [Project Report](./report.pdf)
+- [Markdown Version of Project Report](./report.md)
